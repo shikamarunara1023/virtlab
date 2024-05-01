@@ -1,0 +1,55 @@
+Installing KVM:
+
+sudo apt-get update
+
+egrep -c ‘(vmx|svm)’ /proc/cpuinfo
+
+kvm-ok
+
+sudo apt install -y qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients bridge-utils
+
+sudo systemctl start libvirtd
+
+sudo systemctl status libvirtd
+
+
+VLAN Switch Config:
+
+en
+
+config t
+
+#vlan 10
+#name cse
+#exit
+
+#vlan 20
+#name ece
+# exit
+
+int range fa0/1-2
+#switchport mode access
+# switchport access vlan 10
+
+int range fa0/1-2
+#switchport mode access
+# switchport access vlan 20
+
+ESXI Sevrver:
+1. Download the ESXi 8.0.2 ISO image.
+2. Open VMware Workstation, click File >> New Virtual Machine. Then select Custom (advanced) and the hardware compatibility.
+3. Select Installer disk Image file (ISO) and click Browse to find the downloaded ESXi ISO file, click Next.
+4. After creating the virtual. Select Edit virtual machine settings.
+5. In the Network Adapter, select Custom: Specific virtual network >> VMnet1 (Bridged) >> Next.
+6. Power on the virtual machine, on the Welcome screen, press Enter to continue.
+7. Press F11 to accept the EULA and continue.
+8. Select the virtual disk where you want to install and a keyboard layout.
+9. Enter a root password, then enter the password again to confirm. Press Enter to continue.
+10. Confirm the installation of ESXi 7.0, then press F11 to start the installation.
+11. When the installation is complete, press Enter to reboot.
+12. Copy IP address and past in the browser. Log in VMware ESXi web client
+13. Look for the navigator panel ->Click on virtual machines->Click on Create/Register VM button.
+14. Select the Create a new virtual machine option and click Next.
+15. Select a name and guest OS, customize settings and click finish. No wturn ON the VM.
+
+
