@@ -1,0 +1,10 @@
+
+check if virtualization is enabled :$ egrep -c '(vmx|svm)' /proc/cpuinfo
+
+$ kvm-ok
+
+install cpu-checker : $ sudo apt install -y cpu-checker
+install kvm : $ sudo apt install -y qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients bridge-utils
+start and enable virt daemon : $ sudo systemctl start libvirtd
+                               $ sudo systemctl status libvirtd
+add logged-in user : $ sudo usermod -aG libvirt $USER
